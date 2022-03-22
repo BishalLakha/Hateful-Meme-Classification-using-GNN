@@ -1,0 +1,13 @@
+data/*
+resources/*
+venv/
+.idea/
+__pycache__/
+.env
+model/
+.ipynb_checkpoints/
+
+
+# exception to the rule
+!data/.gitkeep 
+!resources/.gitkeep
