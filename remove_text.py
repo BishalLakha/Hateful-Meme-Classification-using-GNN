@@ -7,8 +7,6 @@ from craft_text_detector import (
     load_craftnet_model,
     load_refinenet_model,
     get_prediction,
-    export_detected_regions,
-    export_extra_results,
     empty_cuda_cache
 )
 
