@@ -1,5 +1,6 @@
 data/*
 resources/*
+preprocessed_images/*
 venv/
 .idea/
 __pycache__/
@@ -11,3 +12,4 @@ model/
 # exception to the rule
 !data/.gitkeep 
 !resources/.gitkeep
+!preprocessed_images/.gitkeep
