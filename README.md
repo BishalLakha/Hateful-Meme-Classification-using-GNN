@@ -1,9 +1,9 @@
 # Hateful Meme Detection Using GNN
 ### To-Do
 
-- [ ] Remove text from all memes
+- [x] Remove text from all memes
 
-- [ ] Generate Caption for all memes
+- [x] Generate Caption for all memes
 
 - [ ] Generate image embeddings
 
@@ -18,3 +18,8 @@
   
 
 ### Generate Captions For Memes
+
+- [Notebook](https://colab.research.google.com/drive/1v5wL5VMtmjwl0IomSq-AQIRKt7hk656E?usp=sharing) to generate caption from image using ClipClap
+
+  
+
