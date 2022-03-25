@@ -10,6 +10,7 @@ model/
 
 
 # exception to the rule
-!data/.gitkeep 
+!data/.gitkeep
+!data/meme_caption.csv 
 !resources/.gitkeep
 !preprocessed_images/.gitkeep
