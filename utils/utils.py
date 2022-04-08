@@ -310,6 +310,20 @@ def loadWord2Vec(filename):
     file.close()
     return vocab, embd, word_vector_map
 
+def loadWAC(filename="/home/bis/Projects/Classes/Deeplearning_class/project/resources/clip.bertvocab.embeddings.513.txt"):
+    """Read Word Vectors"""
+    word_vector_map = {}
+    file = open(filename, 'r')
+    for line in file.readlines():
+        row = line.strip().split(' ')
+        word = row[0]
+        vector = np.array(row[1:-1]).astype(np.float64)
+        
+        word_vector_map[word] = vector
+    # print_log('Loaded Word Vectors!')
+    file.close()
+    return  word_vector_map
+
 def clean_str(string):
     """
     Tokenization/string cleaning for all datasets except for SST.
@@ -351,7 +365,6 @@ def print_log(msg='', end='\n'):
 
 if __name__ == "__main__":
     pass
-
 
 
 
