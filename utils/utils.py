@@ -60,7 +60,7 @@ def sample_mask(idx, l):
     return np.array(mask, dtype=np.bool)
 
 
-def load_data():
+def load_data(word2vec=True):
     """
     Loads input data from gcn/data directory
 
@@ -83,7 +83,11 @@ def load_data():
     names = ['x', 'y', 'tx', 'ty', 'allx', 'ally', 'graph']
     objects = []
     for i in range(len(names)):
-        with open("../data/additional_data/ind.{}".format(names[i]), 'rb') as f:
+        if word2vec:
+            file_path = "./home/bis/Projects/Classes/Deeplearning_class/project/data/word_vec/ind.{}"
+        else:
+            file_path = "/home/bis/Projects/Classes/Deeplearning_class/project/data/additional_data/ind.{}"
+        with open(file_path.format(names[i]), 'rb') as f:
             if sys.version_info > (3, 0):
                 objects.append(pkl.load(f, encoding='latin1'))
             else:
@@ -141,7 +145,7 @@ def load_data():
     return adj, features, y_train, y_val, y_test, train_mask, val_mask, test_mask
 
 
-def load_corpus():
+def load_corpus(word2vec=True):
     """
     Loads input corpus from gcn/data directory
 
@@ -164,7 +168,13 @@ def load_corpus():
     names = ['x', 'y', 'tx', 'ty', 'allx', 'ally', 'adj']
     objects = []
     for i in range(len(names)):
-        with open("./data/additional_data/ind.{}".format( names[i]), 'rb') as f:
+
+        if word2vec:
+            file_path = "/home/bis/Projects/Classes/Deeplearning_class/project/data/word_vec/ind.{}"
+        else:
+            file_path = "/home/bis/Projects/Classes/Deeplearning_class/project/data/additional_data/ind.{}"
+        with open(file_path.format(names[i]), 'rb') as f:
+        # with open("./data/additional_data/ind.{}".format( names[i]), 'rb') as f:
             if sys.version_info > (3, 0):
                 objects.append(pkl.load(f, encoding='latin1'))
             else:
@@ -176,6 +186,9 @@ def load_corpus():
     features = sp.vstack((allx, tx)).tolil()
     labels = np.vstack((ally, ty))
     # print(len(labels))
+
+    base_features = np.vstack((allx, tx))
+
 
     # train_idx_orig = parse_index_file(
     #     "../data/train.index")
@@ -201,7 +214,7 @@ def load_corpus():
 
     adj = adj + adj.T.multiply(adj.T > adj) - adj.multiply(adj.T > adj)
 
-    return adj, features, y_train, y_val, y_test, train_mask, val_mask, test_mask, train_size, test_size
+    return adj, features,base_features, y_train, y_val, y_test, train_mask, val_mask, test_mask, train_size, test_size
 
 
 def sparse_to_tuple(sparse_mx):
@@ -317,7 +330,7 @@ def loadWAC(filename="/home/bis/Projects/Classes/Deeplearning_class/project/reso
     for line in file.readlines():
         row = line.strip().split(' ')
         word = row[0]
-        vector = np.array(row[1:-1]).astype(np.float64)
+        vector = np.array(row[1:-1]).astype(np.float32)
         
         word_vector_map[word] = vector
     # print_log('Loaded Word Vectors!')
